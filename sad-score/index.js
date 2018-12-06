@@ -1,5 +1,5 @@
-var CENTIMETERS_PER_INCH = 2.54;
-var INCHES_PER_FOOT = 12;
+const CENTIMETERS_PER_INCH = 2.54;
+const INCHES_PER_FOOT = 12;
 
 $(document).ready(function(){
     // Hide Score Box until score is calculated.
@@ -73,8 +73,29 @@ $(document).ready(function(){
 
     // START Height Score Calculator
     /*
-        -add 1 point for every cm of your height over 177 and subtract 1 point for every cm below 170
+        -add 1 point for every cm of your height over 177
+        -subtract 1 point for every cm below 170
     */
+    const MAX_HEIGHT_CM = 177;
+    const MIN_HEIGHT_CM = 170;
+
+    function get_height_score(){
+        var score = 0;
+
+        const height = parseInt($("#height_cm").val());
+
+        if(height > MAX_HEIGHT_CM){
+            score = height - MAX_HEIGHT_CM;
+        }
+
+        if(height < MIN_HEIGHT_CM){
+            score = height - MIN_HEIGHT_CM;
+        }
+
+        console.log("Height Score: " + score);
+
+        return score;
+    }
 
     // END Height Calculator
 
@@ -127,12 +148,14 @@ $(document).ready(function(){
         $(":checkbox").each(function(index ) {
             const value = parseInt($(this).val());
             const checked = $(this).prop("checked");
-            console.log( index + ": " + value + " : " + checked);
+            // console.log( index + ": " + value + " : " + checked);
 
             if(checked){
                 score += value;
             }
         });
+
+        score += get_height_score();
 
 
         // Update score and show score.
