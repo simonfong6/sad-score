@@ -2,6 +2,8 @@ var CENTIMETERS_PER_INCH = 2.54;
 var INCHES_PER_FOOT = 12;
 
 $(document).ready(function(){
+    // Hide Score Box until score is calculated.
+    $("#score_box").hide();
 
     // START Height Calculator
 
@@ -67,4 +69,11 @@ $(document).ready(function(){
     });
 
     // END Height Calculator
+
+    // START Calculate Score
+    $("#calculate").on("click", function(){
+        console.log("Click");
+        $("#score_box").show();
+    });
+    // END Calculate Score
 });
