@@ -1,10 +1,23 @@
 <!DOCTYPE html >
 <html>
 <head>
-  <title>Subtle Asian Dating Test</title>
-  <link rel="stylesheet" type="text/css" href="stylesheet.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="index.js"></script>
+    <title>Subtle Asian Dating Test</title>
+    <!-- START Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- END Bootstrap -->
+
+    <link rel="stylesheet" type="text/css" href="stylesheet.css">
+    <!-- Already imported jQuery
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    -->
+    <script src="index.js"></script>
 </head>
 <body>
     <!-- 
@@ -107,16 +120,10 @@
             -add 2 more points if you have graduated with one of those degrees
 
             -subtract 3 points if asian parents think your degree is a waste of time
-
-            -add 3 points if IQ above 130
-
-            -subtract 3 points if IQ below 110
-
-            -add 5 points if 6 figure salary
         -->
 
         <li>
-            <input type="checkbox" name="major" value="3"> You are/have studying engineering, law, or medicine.
+            <input type="checkbox" name="major" value="3"> You are studying/have studied engineering, law, or medicine.
         </li>
         <li>
             <input type="checkbox" name="graduated" value="2"> You graduated with a degree in engineering, law, or medicine.
@@ -124,8 +131,104 @@
         <li>
             <input type="checkbox" name="degree_worthless" value="-3"> Asian parents think your degree is a waste of time.
         </li>
+        <li>
+            <!--
+                -add 3 points if IQ above 130
+
+                -subtract 3 points if IQ below 110
+            -->
+            <input type="number" name="iq"> IQ Score.
+        </li>
+
+        <li>
+            <!--
+                -add 5 points if 6 figure salary
+            -->
+            <input type="checkbox" name="six_figure_salary" value="5"> You have a 6 figure salary.
+        </li>
+        <!--
+
+            
+
+            -add 1 point for every language you know but are not fluent in
+
+            -subtract 5 points if english is the only language you know
+        -->
+        <li>
+            <!--
+                -subtract 5 points if you are jobless and not a student
+            -->
+            <input type="checkbox" name="jobless_not_student" value="-5"> Jobless and not a student.
+        </li>
+        <li>
+            <!--
+                -subtract 4 points if you aren't a student, aren't jobless, but your job is min wage / retail / hourly type that asian parents would "aiya" at
+            -->
+            <input type="checkbox" name="jobless_not_student" value="-4"> Aren't a student, aren't jobless, but your job is min wage / retail / hourly type that asian parents would "aiya" at.
+        </li>
+        <li>
+            <!--
+                -add 4 points if you have, or graduated with, 3.9 GPA or above
+            -->
+            <input type="checkbox" name="jobless_not_student" value="4"> If you have, or graduated with, 3.9 GPA or above.
+        </li>
+        <li>
+            <!--
+                -subtract over 9000 points if you dropped out of school
+            -->
+            <input type="checkbox" name="jobless_not_student" value="-9000"> If you dropped out of school.
+        </li>
+        <li>
+            <!--
+                -add 3 points for every instrument you are trained classically in.
+            -->
+            <input type="number" name="iq"> Number of instruments you are trained classically in.
+        </li>
+        <li>
+            <!--
+                -add 3 points if you were first chair of your symphony at some point. Solo instruments, add 3 points if you've won any competitions post-middle school for the instrument
+            -->
+            <input type="checkbox" name="jobless_not_student" value="3"> If you were first chair of your symphony at some point. Solo instruments, if you've won any competitions post-middle school for the instrument.
+        </li>
+        <li>
+            <!--
+                -add 2 points for varsity or college sports
+            -->
+            <input type="checkbox" name="jobless_not_student" value="2"> Varsity or college sports.
+        </li>
+        <li>
+            <!--
+                -add 3 points for every language you can speak fluently other than english
+            -->
+            <input type="number" name="foreign_langauges"> Number of languages you can speak fluently besides english.
+        </li>
+        <li>
+            <!--
+                -subtract 3 points if you are not fluent in english
+            -->
+           <input type="checkbox" name="jobless_not_student" value="-3"> Not fluent in english.
+        </li>
+        <li>
+            <!--
+                -add 3 points for every language you can speak fluently other than english
+            -->
+           <input type="checkbox" name="jobless_not_student" value="2"> Varsity or college sports.
+        </li>
+        <li>
+            <!--
+                -add 3 points for every language you can speak fluently other than english
+            -->
+            <input type="checkbox" name="jobless_not_student" value="2"> Varsity or college sports.
+        </li>
+        
 
     </ol>
+    <center>
+        <button type="button" class="btn btn-success" id="calculate">Calculate My Score</button>
+        <div id="score_box" class="jumbotron">
+            <h1>Score: <span id="score"></span></h1>  
+        </div>
+    </center>
 </body>
 
 
