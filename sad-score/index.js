@@ -83,7 +83,11 @@ $(document).ready(function(){
     function get_height_score(){
         var score = 0;
 
-        const height = parseInt($("#height_cm").val());
+        var height = parseInt($("#height_cm").val());
+
+        if(isNaN(height)){
+            height = 0;
+        }
 
         if(height > MAX_HEIGHT_CM){
             score = height - MAX_HEIGHT_CM;
@@ -115,7 +119,11 @@ $(document).ready(function(){
     function get_iq_score(){
         var score = 0;
 
-        const iq_score = parseInt($("#iq").val());
+        var iq_score = parseInt($("#iq").val());
+
+        if(isNaN(iq_score)){
+            iq_score = 0;
+        }
 
         if(iq_score > MAX_IQ_SCORE){
             score = IQ_SCORE_MAG;
@@ -143,7 +151,11 @@ $(document).ready(function(){
     function get_instrument_score(){
         var score = 0;
 
-        const num_instruments = parseInt($("#instruments").val());
+        var num_instruments = parseInt($("#instruments").val());
+
+        if(isNaN(num_instruments)){
+            num_instruments = 0;
+        }
 
         score = num_instruments * INSTRUMENT_SCORE_MAG;
 
@@ -165,7 +177,11 @@ $(document).ready(function(){
     function get_language_fluent_score(){
         var score = 0;
 
-        const num_langs = parseInt($("#foreign_langauges_fluent").val());
+        var num_langs = parseInt($("#foreign_langauges_fluent").val());
+
+        if(isNaN(num_langs)){
+            num_langs = 0;
+        }
 
         score = num_langs * LANGUAGE_FLUENT_SCORE_MAG;
 
@@ -186,7 +202,11 @@ $(document).ready(function(){
     function get_language_nonfluent_score(){
         var score = 0;
 
-        const num_langs = parseInt($("#foreign_langauges_nonfluent").val());
+        var num_langs = parseInt($("#foreign_langauges_nonfluent").val());
+
+        if(isNaN(num_langs)){
+            num_langs = 0;
+        }
 
         score = num_langs * LANGUAGE_NONFLUENT_SCORE_MAG;
 
@@ -207,7 +227,11 @@ $(document).ready(function(){
     function get_tatoo_score(){
         var score = 0;
 
-        const num_tattoos = parseInt($("#tattoos").val());
+        var num_tattoos = parseInt($("#tattoos").val());
+
+        if(isNaN(num_tattoos)){
+            num_tattoos = 0;
+        }
 
         score = num_tattoos * TATTOO_SCORE_MAG;
 
