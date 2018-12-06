@@ -76,6 +76,7 @@ $(document).ready(function(){
         -add 1 point for every cm of your height over 177
         -subtract 1 point for every cm below 170
     */
+
     const MAX_HEIGHT_CM = 177;
     const MIN_HEIGHT_CM = 170;
 
@@ -106,6 +107,29 @@ $(document).ready(function(){
         -subtract 3 points if IQ below 110
     */
 
+    const MAX_IQ_SCORE = 130;
+    const MIN_IQ_SCORE = 110;
+
+    const IQ_SCORE_MAG = 3;
+
+    function get_iq_score(){
+        var score = 0;
+
+        const iq_score = parseInt($("#iq").val());
+
+        if(iq_score > MAX_IQ_SCORE){
+            score = IQ_SCORE_MAG;
+        }
+
+        if(iq_score < MIN_IQ_SCORE){
+            score = -IQ_SCORE_MAG;
+        }
+
+        console.log("IQ Score: " + score);
+
+        return score;
+    }
+
     // END IQ Score Calculator
 
 
@@ -113,6 +137,20 @@ $(document).ready(function(){
     /*
         -add 3 points for every instrument you are trained classically in.
     */
+
+    const INSTRUMENT_SCORE_MAG = 3;
+
+    function get_instrument_score(){
+        var score = 0;
+
+        const num_instruments = parseInt($("#instruments").val());
+
+        score = num_instruments * INSTRUMENT_SCORE_MAG;
+
+        console.log("Instrument Score: " + score);
+
+        return score;
+    }
 
     // END Instrument Score Calculator
 
@@ -122,6 +160,20 @@ $(document).ready(function(){
         -add 3 points for every language you can speak fluently other than english
     */
 
+    const LANGUAGE_FLUENT_SCORE_MAG = 3;
+
+    function get_language_fluent_score(){
+        var score = 0;
+
+        const num_langs = parseInt($("#foreign_langauges_fluent").val());
+
+        score = num_langs * LANGUAGE_FLUENT_SCORE_MAG;
+
+        console.log("Fluent Language Score: " + score);
+
+        return score;
+    }
+
     // END Fluent Language
 
     // START Non-fluent Language Score Calculator
@@ -129,12 +181,40 @@ $(document).ready(function(){
         -add 1 point for every language you know but are not fluent in
     */
 
+    const LANGUAGE_NONFLUENT_SCORE_MAG = 1;
+
+    function get_language_nonfluent_score(){
+        var score = 0;
+
+        const num_langs = parseInt($("#foreign_langauges_nonfluent").val());
+
+        score = num_langs * LANGUAGE_NONFLUENT_SCORE_MAG;
+
+        console.log("Non-Fluent Language Score: " + score);
+
+        return score;
+    }
+
     // END Non-fluent Language
 
     // START Tattoo Score Calculator
     /*
         -subtract 1 point for every tattoo
     */
+
+    const TATTOO_SCORE_MAG = -1;
+
+    function get_tatoo_score(){
+        var score = 0;
+
+        const num_tattoos = parseInt($("#tattoos").val());
+
+        score = num_tattoos * TATTOO_SCORE_MAG;
+
+        console.log("Tattoo Language Score: " + score);
+
+        return score;
+    }
 
     // END Tattoo Language
 
@@ -155,7 +235,13 @@ $(document).ready(function(){
             }
         });
 
+        // Calculate numeric scores.
         score += get_height_score();
+        score += get_iq_score();
+        score += get_instrument_score();
+        score += get_language_fluent_score();
+        score += get_language_nonfluent_score();
+        score += get_tatoo_score();
 
 
         // Update score and show score.
