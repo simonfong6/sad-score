@@ -72,7 +72,23 @@ $(document).ready(function(){
 
     // START Calculate Score
     $("#calculate").on("click", function(){
-        console.log("Click");
+        console.log("Calculate");
+        var score = 0;
+
+        // Handles all simple check boxes.
+        $(":checkbox").each(function(index ) {
+            const value = parseInt($(this).val());
+            const checked = $(this).prop("checked");
+            console.log( index + ": " + value + " : " + checked);
+
+            if(checked){
+                score += value;
+            }
+        });
+
+
+        // Update score and show score.
+        $("#score").text(score);
         $("#score_box").show();
     });
     // END Calculate Score
