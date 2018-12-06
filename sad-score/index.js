@@ -70,6 +70,54 @@ $(document).ready(function(){
 
     // END Height Calculator
 
+
+    // START Height Score Calculator
+    /*
+        -add 1 point for every cm of your height over 177 and subtract 1 point for every cm below 170
+    */
+
+    // END Height Calculator
+
+
+    // START IQ Score Calculator
+    /*
+        -add 3 points if IQ above 130
+        -subtract 3 points if IQ below 110
+    */
+
+    // END IQ Score Calculator
+
+
+    // START Instrument Score Calculator
+    /*
+        -add 3 points for every instrument you are trained classically in.
+    */
+
+    // END Instrument Score Calculator
+
+
+    // START Fluent Language Score Calculator
+    /*
+        -add 3 points for every language you can speak fluently other than english
+    */
+
+    // END Fluent Language
+
+    // START Non-fluent Language Score Calculator
+    /*
+        -add 1 point for every language you know but are not fluent in
+    */
+
+    // END Non-fluent Language
+
+    // START Tattoo Score Calculator
+    /*
+        -subtract 1 point for every tattoo
+    */
+
+    // END Tattoo Language
+
+
     // START Calculate Score
     $("#calculate").on("click", function(){
         console.log("Calculate");
