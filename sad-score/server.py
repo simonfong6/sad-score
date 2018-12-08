@@ -44,20 +44,6 @@ def index():
     return redirect(url_for('static', filename='html/index.html'))
 
 
-@app.route('/index.js')
-def javascript():
-    return send_from_directory('.', 'index.js')
-
-@app.route('/stylesheet.css')
-def stylesheet():
-    return send_from_directory('.', 'stylesheet.css')
-
-
-@app.route('/favicon.ico')
-def favicon():
-    return send_from_directory('.', 'favicon.ico')
-
-
 def main(args):
     if args.no_log:
         log_file_path = None
