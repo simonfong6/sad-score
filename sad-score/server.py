@@ -4,6 +4,7 @@ Server code to track number of visitors.
 """
 import logging
 from flask import Flask, request, send_from_directory, g, redirect, url_for
+from flask import jsonify
 from pymongo import MongoClient
 
 app = Flask(__name__)
@@ -42,6 +43,15 @@ def index():
     logging.info("IP Address: {}".format(request.remote_addr))
 
     return redirect(url_for('static', filename='html/index.html'))
+
+
+@app.route('/data', methods=['POST'])
+def handle_survey_answers():
+    """
+    Receives form data adds submission to database.
+    """
+
+    return jsonify({"status": "success"})
 
 
 def main(args):
