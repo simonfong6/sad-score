@@ -59,7 +59,12 @@ def favicon():
 
 
 def main(args):
-    logging.basicConfig(filename='sadscore.log', level=logging.INFO)
+    if args.no_log:
+        log_file_path = None
+    else:
+        log_file_path = 'sadscore.log'
+
+    logging.basicConfig(filename=log_file_path, level=logging.INFO)
 
     if args.prod:
         import db_key_prod as db_key
@@ -78,6 +83,7 @@ def main(args):
 
     app.run(
         host='0.0.0.0',
+        debug=args.debug,
         port=args.port)
 
 
@@ -89,8 +95,17 @@ if __name__ == '__main__':
                         help="Port that the server will run on.",
                         type=int,
                         default=5050)
+    parser.add_argument('-d', '--debug',
+                        help="Whether or not to run in debug mode.",
+                        default=False,
+                        action='store_true')
     parser.add_argument('--prod',
                         help="Whether or not to run in prod mode.",
+                        default=False,
+                        action='store_true')
+
+    parser.add_argument('--no_log',
+                        help="Whether to not keep logs.",
                         default=False,
                         action='store_true')
 
