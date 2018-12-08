@@ -104,4 +104,6 @@ venv.bak/
 .mypy_cache/
 
 # Database Credentials
-dbKey.py
+db_key_dev.py
+db_key_prod.py
+
