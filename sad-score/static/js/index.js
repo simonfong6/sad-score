@@ -267,10 +267,35 @@ $(document).ready(function(){
         score += get_language_nonfluent_score();
         score += get_tatoo_score();
 
+        send_results();
 
         // Update score and show score.
         $("#score").text(score);
         $("#score_box").show();
     });
     // END Calculate Score
+
+    // START Survey Results Updater
+
+    const DATA_URL = '/data';
+
+    function send_results(){
+        var num_langs = 3;
+        var height = 5;
+
+        var data = {
+            "num_langs": num_langs,
+            "height": height
+        }
+
+        $.post(
+            url=DATA_URL,
+            data=data,
+            function(data_, status){
+                console.log("Sent request");
+                console.log(status);
+            })
+    }
+
+    // END Survery Results Updater
 });
