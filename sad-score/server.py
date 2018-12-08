@@ -6,18 +6,7 @@ import logging
 from flask import Flask, request, send_from_directory, g
 from pymongo import MongoClient
 
-# Database key
-import dbKey
-
 app = Flask(__name__)
-
-
-# Load default config and override config from an environment variable
-app.config.update(dict(
-    DATABASE=dbKey.dbKey,
-    USERNAME=dbKey.username,
-    PASSWORD=dbKey.password
-))
 
 
 def connect_db():
@@ -69,10 +58,38 @@ def favicon():
     return send_from_directory('.', 'favicon.ico')
 
 
-def main():
+def main(args):
     logging.basicConfig(filename='sadscore.log', level=logging.INFO)
-    app.run(host='0.0.0.0', port=5050)
+
+    if args.prod:
+        import db_key_prod as db_key
+    else:
+        import db_key_dev as db_key
+
+    # Load default config and override config from an environment variable
+    app.config.update(dict(
+        DATABASE=db_key.dbKey,
+        USERNAME=db_key.username,
+        PASSWORD=db_key.password
+    ))
+
+    app.run(
+        host='0.0.0.0',
+        port=args.port)
 
 
 if __name__ == '__main__':
-    main()
+    from argparse import ArgumentParser
+    parser = ArgumentParser()
+
+    parser.add_argument('-p', '--port',
+                        help="Port that the server will run on.",
+                        type=int,
+                        default=5050)
+    parser.add_argument('--prod',
+                        help="Whether or not to run in prod mode.",
+                        default=False,
+                        action='store_true')
+
+    args = parser.parse_args()
+    main(args)
