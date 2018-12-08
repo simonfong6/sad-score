@@ -21,7 +21,7 @@ def get_db():
     """
     if not hasattr(g, 'dbConnection'):
         g.dbConnection = connect_db()
-    return g.dbConnection.sadscore
+    return g.dbConnection[app.config['DATABASE_NAME']]
 
 
 @app.teardown_appcontext
@@ -63,14 +63,17 @@ def main(args):
 
     if args.prod:
         import db_key_prod as db_key
+        print("Running in PRODUCTION")
     else:
         import db_key_dev as db_key
+        print("Running in DEVELOPMENT")
 
     # Load default config and override config from an environment variable
     app.config.update(dict(
         DATABASE=db_key.dbKey,
         USERNAME=db_key.username,
-        PASSWORD=db_key.password
+        PASSWORD=db_key.password,
+        DATABASE_NAME=db_key.db_name
     ))
 
     app.run(
