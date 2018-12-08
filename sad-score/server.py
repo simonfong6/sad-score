@@ -3,7 +3,7 @@
 Server code to track number of visitors.
 """
 import logging
-from flask import Flask, request, send_from_directory, g
+from flask import Flask, request, send_from_directory, g, redirect, url_for
 from pymongo import MongoClient
 
 app = Flask(__name__)
@@ -41,7 +41,7 @@ def index():
         upsert=True)
     logging.info("IP Address: {}".format(request.remote_addr))
 
-    return send_from_directory('.', 'index.html')
+    return redirect(url_for('static', filename='html/index.html'))
 
 
 @app.route('/index.js')
