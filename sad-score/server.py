@@ -3,6 +3,8 @@
 Server code to track number of visitors.
 """
 import logging
+import json
+import time
 from flask import Flask, request, send_from_directory, g, redirect, url_for
 from flask import jsonify
 from pymongo import MongoClient
@@ -40,9 +42,11 @@ def index():
         {'_id': 'visits'},
         {'$inc': {'count': 1}},
         upsert=True)
+    print("upsert")
+
     logging.info("IP Address: {}".format(request.remote_addr))
 
-    return redirect(url_for('static', filename='html/index.html'))
+    return send_from_directory('static', 'html/index.html')
 
 
 @app.route('/data', methods=['POST'])
@@ -50,8 +54,21 @@ def handle_survey_answers():
     """
     Receives form data adds submission to database.
     """
+    entry = json.loads(request.form['data'])
 
-    return jsonify({"status": "success"})
+    timestamp = time.time()
+    entry['timestamp_secs'] = timestamp
+
+    s = json.dumps(entry, indent=4, sort_keys=True)
+    print(s)
+
+    db = get_db()
+    responses_col = db.responses
+    response_id = responses_col.insert_one(entry).inserted_id
+
+    resp = {"id": str(response_id)}
+
+    return jsonify(resp)
 
 
 def main(args):
