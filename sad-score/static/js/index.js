@@ -367,6 +367,8 @@ $(document).ready(function(){
 
         var form_data = get_form_data();
         var inner_data = {
+            "form_type": 'men',
+            "form_version": 0,
             "responses": form_data,
             "total_score": total_score
         }
@@ -380,7 +382,7 @@ $(document).ready(function(){
             url=DATA_URL,
             data=data,
             function(data_, status){
-                console.log(data_);
+                console.log(data_ );
             })
     }
 
