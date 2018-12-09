@@ -62,7 +62,27 @@ def handle_survey_answers():
     logging.debug(entry_string)
 
     db = get_db()
-    responses_col = db.responses
+
+    form_type = entry['form_type']
+
+    responses_col = None
+
+    # Differentiate between men and women quiz.
+    if form_type == 'men':
+        responses_col = db.responses_men
+    elif form_type == 'women':
+        responses_col = db.responses_women
+    else:
+        logging.warning("Form Type is not 'men' or 'women': {}".format(
+            form_type))
+
+    # Update responses counter.
+    responses_col.find_one_and_update(
+        {'_id': 'responses'},
+        {'$inc': {'count': 1}},
+        upsert=True)
+
+    # Insert the response information.
     response_id = responses_col.insert_one(entry).inserted_id
 
     resp = {"id": str(response_id)}
