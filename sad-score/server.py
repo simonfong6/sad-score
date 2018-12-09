@@ -58,8 +58,8 @@ def handle_survey_answers():
     timestamp = time.time()
     entry['timestamp_secs'] = timestamp
 
-    s = json.dumps(entry, indent=4, sort_keys=True)
-    print(s)
+    entry_string = json.dumps(entry, indent=4, sort_keys=True)
+    logging.debug(entry_string)
 
     db = get_db()
     responses_col = db.responses
