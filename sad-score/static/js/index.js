@@ -267,7 +267,7 @@ $(document).ready(function(){
         score += get_language_nonfluent_score();
         score += get_tatoo_score();
 
-        send_results();
+        send_results(score);
 
         // Update score and show score.
         $("#score").text(score);
@@ -275,25 +275,112 @@ $(document).ready(function(){
     });
     // END Calculate Score
 
+    // START Checkbox Data
+    function get_checkbox_data(checkbox){
+        const name = checkbox.attr('name');
+        const value = checkbox.prop('checked');
+        var score = 0;
+        if(value){
+            score = parseInt(checkbox.val());
+        }
+
+        var data = {
+            "name": name,
+            "value": value,
+            "score": score
+        }
+
+        console.log(data);
+
+        return data;
+    }
+
+    // END Checkbox Data
+
+    // START Numeric Data
+    function get_numeric_data(numeric){
+        const name = numeric.attr('name');
+        const value = numeric.val();
+        var score = 0;
+        switch(name) {
+            case "height_cm":
+                score = get_height_score();
+                break;
+            case "iq_score":
+                score = get_iq_score();
+                break;
+            case "instruments":
+                score = get_instrument_score();
+                break;
+            case "foreign_langauges_fluent":
+                score = get_language_fluent_score();
+                break;
+            case "foreign_langauges_nonfluent":
+                score = get_language_nonfluent_score();
+                break;
+            case "tattoos":
+                score = get_tatoo_score();
+                break;
+            default:
+                console.log("ERROR DOES NOT MATCH: '" + name + "'");
+        }
+
+        var data = {
+            "name": name,
+            "value": value,
+            "score": score
+        }
+
+        return data;
+    }
+    // END Numeric Data
+
+    // START Collect Form Data
+    function get_form_data(){
+        var data = {};
+
+        $(".quiz_input").each(function(index){
+            const type = $(this).attr('type');
+            console.log(type);
+            console.log('checkbox' == type);
+            var input_data;
+            if('checkbox' == type){
+                input_data = get_checkbox_data($(this));
+            }else{
+                input_data = get_numeric_data($(this));
+            }
+            data[input_data.name] = input_data;
+        });
+
+        return data;
+    }
+
+    // END Collect Form Data
+
     // START Survey Results Updater
 
     const DATA_URL = '/data';
 
-    function send_results(){
+    function send_results(total_score){
         var num_langs = 3;
         var height = 5;
 
-        var data = {
-            "num_langs": num_langs,
-            "height": height
+        var form_data = get_form_data();
+        var inner_data = {
+            "responses": form_data,
+            "total_score": total_score
         }
+        const inner_data_str = JSON.stringify(inner_data);
+
+        var data = {
+            "data": inner_data_str
+        } 
 
         $.post(
             url=DATA_URL,
             data=data,
             function(data_, status){
-                console.log("Sent request");
-                console.log(status);
+                console.log(data_);
             })
     }
 
