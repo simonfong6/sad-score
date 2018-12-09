@@ -42,7 +42,6 @@ def index():
         {'_id': 'visits'},
         {'$inc': {'count': 1}},
         upsert=True)
-    print("upsert")
 
     logging.info("IP Address: {}".format(request.remote_addr))
 
