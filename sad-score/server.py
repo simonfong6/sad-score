@@ -70,6 +70,16 @@ def handle_survey_answers():
     return jsonify(resp)
 
 
+@app.route('/analytics')
+def analytics():
+    db = get_db()
+    visits_col = db.visits
+    visit_count = visits_col.find_one(
+        {'_id': 'visits'})
+
+    return jsonify(visit_count)
+
+
 def main(args):
     if args.no_log:
         log_file_path = None
