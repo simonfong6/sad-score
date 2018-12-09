@@ -9,6 +9,8 @@ from flask import Flask, request, send_from_directory, g, redirect, url_for
 from flask import jsonify
 from pymongo import MongoClient
 
+QUIZ_TYPES = set(['men', 'women'])
+
 app = Flask(__name__)
 
 
@@ -45,7 +47,33 @@ def index():
 
     logging.info("IP Address: {}".format(request.remote_addr))
 
-    return send_from_directory('static', 'html/index.html')
+    return send_from_directory('static', 'html/quiz_men_1.html')
+
+
+@app.route('/quiz/<quiz_type>')
+def quiz(quiz_type):
+    if quiz_type not in QUIZ_TYPES:
+        logging.warning("Incorrect Quiz Type: '{}'".format(quiz_type))
+
+    args = request.args
+    if 'version' not in args:
+        logging.warning("'version' not in args.")
+        return "'version' not in args."
+
+    version = int(args['version'])
+
+    if quiz_type == 'men':
+        if version == 0:
+            return send_from_directory('static', 'html/index.html')
+        elif version == 1:
+            return send_from_directory('static', 'html/quiz_men_1.html')
+        else:
+            logging.warning("Version does not exist: '{}'".format(version))
+            return "Version does not exist: '{}'".format(version)
+
+    elif quiz_type == 'women':
+        logging.warning("Women quiz not available yet.")
+        return "Version does not exist: '{}'".format(version)
 
 
 @app.route('/data', methods=['POST'])
