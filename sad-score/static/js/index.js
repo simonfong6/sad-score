@@ -1,5 +1,7 @@
 const CENTIMETERS_PER_INCH = 2.54;
 const INCHES_PER_FOOT = 12;
+const FORM_VERSION = 0;
+const FORM_TYPE = 'men';
 
 $(document).ready(function(){
     // Hide Score Box until score is calculated.
@@ -367,8 +369,8 @@ $(document).ready(function(){
 
         var form_data = get_form_data();
         var inner_data = {
-            "form_type": 'men',
-            "form_version": 0,
+            "form_type": FORM_TYPE,
+            "form_version": FORM_VERSION,
             "responses": form_data,
             "total_score": total_score
         }
