@@ -98,10 +98,6 @@ $(document).ready(function(){
 
         const height_in = centimeters_to_inches(height_cm);
 
-        console.log(MAX_HEIGHT_IN);
-        console.log(MIN_HEIGHT_IN);
-        console.log(height_in);
-
         if(height_in > MAX_HEIGHT_IN){
             score = height_in - MAX_HEIGHT_IN;
         }
@@ -255,6 +251,49 @@ $(document).ready(function(){
 
     // END Tattoo Language
 
+    // START Attractiveness Score Calculator
+    /*
+        6 is 0 points
+        7=1pt
+        8=2pt
+        9=3pt
+        10=no points (for being conceited lmao)
+        Same thing downwards but stopping at minus 3 points
+    */
+
+    const ATTRACTIVENESS_VALUE_MEDIAN = 6;
+    const ATTRACTIVENESS_VALUE_CONCEITED = 10;
+    const ATTRACTIVENESS_SCORE_MAX = 3;
+    const ATTRACTIVENESS_SCORE_MIN = -3;
+
+    function get_attractivness_score(){
+        var score = 0;
+
+        var attractiveness_val = parseInt($("#attractiveness").val());
+
+        if(isNaN(attractiveness_val)){
+            attractiveness_val = 0;
+        }
+
+        // Checks if value is conceited
+        if(attractiveness_val == ATTRACTIVENESS_VALUE_CONCEITED){
+            score = 0;
+        }else{
+            score = attractiveness_val - ATTRACTIVENESS_VALUE_MEDIAN;
+        }
+
+
+        // Handles too high and too low score. Capped at +/-3
+        score = Math.max(score, ATTRACTIVENESS_SCORE_MIN);
+        score = Math.min(score, ATTRACTIVENESS_SCORE_MAX);
+
+        console.log("Attractiveness Score: " + score);
+
+        return score;
+    }
+
+    // END Attractiveness Language
+
 
     // START Calculate Score
     $("#calculate").on("click", function(){
@@ -279,6 +318,7 @@ $(document).ready(function(){
         score += get_language_fluent_score();
         score += get_language_nonfluent_score();
         score += get_tatoo_score();
+        score += get_attractivness_score();
 
         send_results(score);
 
@@ -333,6 +373,9 @@ $(document).ready(function(){
                 break;
             case "tattoos":
                 score = get_tatoo_score();
+                break;
+            case "attractiveness":
+                score = get_attractivness_score();
                 break;
             default:
                 console.log("ERROR DOES NOT MATCH: '" + name + "'");
