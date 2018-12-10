@@ -27,6 +27,11 @@ $(document).ready(function(){
         return height;
     }
 
+    function centimeters_to_inches(cm){
+        const inches = cm / CENTIMETERS_PER_INCH;
+        return Math.round(inches);
+    }
+
     function update_cm(){
         var feet = $("#height_ft").val();
         var inches = $("#height_in").val();
@@ -75,28 +80,34 @@ $(document).ready(function(){
 
     // START Height Score Calculator
     /*
-        -add 1 point for every cm of your height over 177
-        -subtract 1 point for every cm below 170
+        1+ for every inch over 5'10
+        1- for every inch below 5'7
     */
 
-    const MAX_HEIGHT_CM = 177;
-    const MIN_HEIGHT_CM = 170;
+    const MAX_HEIGHT_IN = 5 * INCHES_PER_FOOT + 10;
+    const MIN_HEIGHT_IN = 5 * INCHES_PER_FOOT + 7;
 
     function get_height_score(){
         var score = 0;
 
-        var height = parseInt($("#height_cm").val());
+        var height_cm = parseInt($("#height_cm").val());
 
-        if(isNaN(height)){
+        if(isNaN(height_cm)){
             height = 0;
         }
 
-        if(height > MAX_HEIGHT_CM){
-            score = height - MAX_HEIGHT_CM;
+        const height_in = centimeters_to_inches(height_cm);
+
+        console.log(MAX_HEIGHT_IN);
+        console.log(MIN_HEIGHT_IN);
+        console.log(height_in);
+
+        if(height_in > MAX_HEIGHT_IN){
+            score = height_in - MAX_HEIGHT_IN;
         }
 
-        if(height < MIN_HEIGHT_CM){
-            score = height - MIN_HEIGHT_CM;
+        if(height_in < MIN_HEIGHT_IN){
+            score = height_in - MIN_HEIGHT_IN;
         }
 
         console.log("Height Score: " + score);
@@ -292,7 +303,7 @@ $(document).ready(function(){
             "score": score
         }
 
-        console.log(data);
+        // console.log(data);
 
         return data;
     }
@@ -343,8 +354,8 @@ $(document).ready(function(){
 
         $(".quiz_input").each(function(index){
             const type = $(this).attr('type');
-            console.log(type);
-            console.log('checkbox' == type);
+            // console.log(type);
+            // console.log('checkbox' == type);
             var input_data;
             if('checkbox' == type){
                 input_data = get_checkbox_data($(this));
