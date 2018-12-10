@@ -120,21 +120,35 @@
             <input type="number" id="height_ft" value=0> Feet
             <input type="number" id="height_in" value=0> Inches
         </li>
-        <!--
-            -add 3 points if you are studying engineering, law, or medicine
-
-            -add 2 more points if you have graduated with one of those degrees
-
-            -subtract 3 points if asian parents think your degree is a waste of time
-        -->
-
         <li>
-            <input type="checkbox" class="quiz_input" name="degree_acceptable" value="3"> You are studying/have studied engineering, law, or medicine.
+            <!--
+                -add 2 points if a STEM, law, or medicine major.
+            -->
+            <input type="checkbox" class="quiz_input" name="degree_acceptable" value="2"> STEM, law, or medicine major.
+
         </li>
         <li>
-            <input type="checkbox" class="quiz_input" name="degree_graduated" value="2"> You graduated with a degree in engineering, law, or medicine.
+            <!--
+                -add 2 more points graduated
+            -->
+            <input type="checkbox" class="quiz_input" name="degree_graduated" value="2"> Graduated.
         </li>
         <li>
+            <!--
+                -add 2 points masters in progress or received
+            -->
+            <input type="checkbox" class="quiz_input" name="degree_masters" value="2"> Masters in progress or received.
+        </li>
+        <li>
+            <!--
+               -add 5 points PhD in progress or received
+            -->
+            <input type="checkbox" class="quiz_input" name="degree_phd" value="5"> PhD in progress or received.
+        </li>
+        <li>
+            <!--
+                -subtract 3 points if asian parents think your degree is a waste of time
+            -->
             <input type="checkbox" class="quiz_input" name="degree_waste_of_time" value="-3"> Asian parents think your degree is a waste of time.
         </li>
         <li>
