@@ -75,7 +75,7 @@ class App extends React.Component {
           />
           <InputNumber
             name="instruments"
-            label="Number of instruments you are trained classNameically in."
+            label="Number of instruments you are trained classically in."
             id="instruments"
             value="0"
           />
