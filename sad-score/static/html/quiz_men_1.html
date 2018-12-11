@@ -29,10 +29,15 @@
     <!-- Load our React component. -->
     <script src="/static/js/header.jsx" type="text/babel"></script>
     <script src="/static/js/footer.jsx" type="text/babel"></script>
-    <script src="/static/js/input_height.jsx" type="text/babel"></script>
-     <script src="/static/js/input_iq_score.jsx" type="text/babel"></script>
-    <script src="/static/js/button_score.jsx" type="text/babel"></script>
+    
     <script src="/static/js/checkbox_quiz.jsx" type="text/babel"></script>
+    
+    <script src="/static/js/input_height.jsx" type="text/babel"></script>
+    <script src="/static/js/input_iq_score.jsx" type="text/babel"></script>
+    <script src="/static/js/input_number.jsx" type="text/babel"></script>
+    
+    <script src="/static/js/button_score.jsx" type="text/babel"></script>
+    
     <script src="/static/js/app.jsx" type="text/babel"></script>
 
     <!-- Favicon -->
@@ -111,6 +116,12 @@
     -->
     <div id="app-container">
     </div>
+    <center>
+        <button type="button" className="btn btn-success" id="calculate">Calculate My Score</button>
+        <div id="score_box" className="jumbotron">
+          <h1>Score: <span id="score"></span></h1>  
+        </div>
+    </center>
     
 </body>
 
