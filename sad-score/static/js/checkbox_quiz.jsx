@@ -10,7 +10,7 @@ class CheckboxQuiz extends React.Component {
 
     return (
       <li>
-        <input type="checkbox" className="quiz_input" name={this.props.label} value={this.props.value}/>
+        <input type="checkbox" className="quiz_input" name={this.props.name} value={this.props.value}/>
         <span> {this.props.label}</span>
       </li>
     );
