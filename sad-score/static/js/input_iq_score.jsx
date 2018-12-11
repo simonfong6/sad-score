@@ -9,7 +9,7 @@ class InputIqScore extends React.Component {
 
     return (
       <li>
-        <input type="number" className="quiz_input" name="iq_score" id="iq" value="0"/> IQ score or estimate.
+        <input type="number" className="quiz_input" name="iq_score" id="iq"/> IQ score or estimate.
         <br/>
           IQ Score Meanings from this <a href="http://www.wilderdom.com/intelligence/IQWhatScoresMean.html">site</a>:
         <ul>
