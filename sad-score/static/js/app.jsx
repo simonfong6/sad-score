@@ -9,20 +9,7 @@ class App extends React.Component {
 
     return (
       <div>
-      <center>
-        <h1>Subtle Asian Dating Score</h1>
-        <p>
-            Hey guys! Heard of the SAT score? Now here we have the SAD score. The SAD score measures how much the average asian mother would approve of you as their child’s significant other.
-        </p>
-        <p>
-            Quiz Version 2. Version 1 can be found <a href="/quiz/men?version=0">here</a>:
-        </p>
-        <p>
-            Credit to Ev Erest Xu for scoring system.
-            <br/>
-            Instagram: <a href="https://www.instagram.com/1ly_away/?hl=en">@1ly_away</a>
-        </p>
-    </center>
+      <Header/>
     <ol type="1">
         <li>
             Height:
@@ -32,36 +19,26 @@ class App extends React.Component {
             <input type="number" id="height_ft" value="0"/> Feet
             <input type="number" id="height_in" value="0"/> Inches
         </li>
-        <div 
-            className="checkbox_quiz"
-            data-name="degree_acceptable"
-            data-label="STEM, law, or medicine major."
-            data-value="2">
-        </div>
-        <div 
-            className="checkbox_quiz"
-            data-name="degree_graduated"
-            data-label="Graduated."
-            data-value="2">
-        </div>
-        <div 
-            className="checkbox_quiz"
-            data-name="degree_masters"
-            data-label="Masters in progress or received."
-            data-value="2">
-        </div>
-        <div 
-            className="checkbox_quiz"
-            data-name="degree_phd"
-            data-label="PhD in progress or received."
-            data-value="5">
-        </div>
-        <div 
-            className="checkbox_quiz"
-            data-name="degree_waste_of_time"
-            data-label="Asian parents think your degree is a waste of time."
-            data-value="-3">
-        </div>
+        <CheckboxQuiz
+          name="degree_acceptable"
+          label="STEM, law, or medicine major."
+          value="2"/>
+        <CheckboxQuiz
+          name="degree_graduated"
+          label="Graduated"
+          value="2"/>
+        <CheckboxQuiz
+          name="degree_masters"
+          label="Masters in progress or received."
+          value="2"/>
+        <CheckboxQuiz
+          name="degree_phd"
+          label="PhD in progress or received."
+          value="5"/>
+        <CheckboxQuiz
+          name="degree_waste_of_time"
+          label="Asian parents think your degree is a waste of time."
+          value="-3"/>
         <li>
             <input type="number" className="quiz_input" name="iq_score" id="iq" value="0"/> IQ score or estimate.
             <br/>
@@ -90,6 +67,10 @@ class App extends React.Component {
             </li>
             </ul>
         </li>
+        <CheckboxQuiz
+          name=""
+          label=""
+          value=""/>
         <div 
             className="checkbox_quiz"
             data-name="salary_over_80k"
@@ -251,11 +232,7 @@ class App extends React.Component {
             <input type="checkbox" className="quiz_input" name="scored_yourself" value="-3"/> If you really sat here for 10 minutes and scored yourself when you could have been studying/practicing/working out.
         </li>
     </ol>
-    <h2>Note from Original Poster:</h2>
-    <p>
-        Oh heck lmao my notification. Disclaimer: this is a parody of SAD standards are sad for laughs. If you’re mad at this come scream at me on instagram I don’t mind
-        <a href="https://www.instagram.com/1ly_away/?hl=en">@1ly_away</a>
-    </p>
+    <Footer/>
     <center>
         <button type="button" className="btn btn-success" id="calculate">Calculate My Score</button>
         <div id="score_box" className="jumbotron">

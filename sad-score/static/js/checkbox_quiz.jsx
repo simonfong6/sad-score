@@ -18,6 +18,7 @@ class CheckboxQuiz extends React.Component {
 }
 
 // Scan through all checkbox_quiz divs and render.
+/*
 document.querySelectorAll('.checkbox_quiz')
   .forEach(domContainer => {
     const name = domContainer.dataset.name;
@@ -31,3 +32,4 @@ document.querySelectorAll('.checkbox_quiz')
       value={value}/>,
       domContainer);
   });
+*/
