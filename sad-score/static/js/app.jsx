@@ -11,14 +11,7 @@ class App extends React.Component {
       <div>
       <Header/>
     <ol type="1">
-        <li>
-            Height:
-            <br/>
-            <input type="number" className="quiz_input" id="height_cm" name="height_cm" value="0"/> Centimeters
-            <br/>
-            <input type="number" id="height_ft" value="0"/> Feet
-            <input type="number" id="height_in" value="0"/> Inches
-        </li>
+        <InputHeight/>
         <CheckboxQuiz
           name="degree_acceptable"
           label="STEM, law, or medicine major."
@@ -233,12 +226,7 @@ class App extends React.Component {
         </li>
     </ol>
     <Footer/>
-    <center>
-        <button type="button" className="btn btn-success" id="calculate">Calculate My Score</button>
-        <div id="score_box" className="jumbotron">
-            <h1>Score: <span id="score"></span></h1>  
-        </div>
-    </center>
+    <ButtonScore/>
     </div>
     );
   }
