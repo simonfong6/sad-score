@@ -11,13 +11,24 @@
 
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
     <!-- END Bootstrap -->
-
     <link rel="stylesheet" type="text/css" href="/static/css/stylesheet.css">
-    <!-- Already imported jQuery
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    -->
+
+    <!-- Handles quiz of page -->
     <script src="/static/js/quiz_men_1.js"></script>
+    
+    <!-- Load React. -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+
+    <!-- Added JSX -->
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+    <!-- Load our React component. -->
+    <script src="/static/js/checkbox_quiz.jsx" type="text/babel"></script>
+    <script src="/static/js/app.jsx" type="text/babel"></script>
 
     <!-- Favicon -->
     <link rel="icon" href="/static/images/favicon.ico">
@@ -93,6 +104,8 @@
     Oh heck lmao my notification. Disclaimer: this is a parody of SAD standards are sad for laughs. If you’re mad at this come scream at me on instagram I don’t mind
     @1ly_away
     -->
+    <div id="app-container">
+    </div>
     <center>
         <h1>Subtle Asian Dating Score</h1>
         <p>
@@ -119,37 +132,36 @@
             <input type="number" id="height_ft" value=0> Feet
             <input type="number" id="height_in" value=0> Inches
         </li>
-        <li>
-            <!--
-                -add 2 points if a STEM, law, or medicine major.
-            -->
-            <input type="checkbox" class="quiz_input" name="degree_acceptable" value="2"> STEM, law, or medicine major.
-
-        </li>
-        <li>
-            <!--
-                -add 2 more points graduated
-            -->
-            <input type="checkbox" class="quiz_input" name="degree_graduated" value="2"> Graduated.
-        </li>
-        <li>
-            <!--
-                -add 2 points masters in progress or received
-            -->
-            <input type="checkbox" class="quiz_input" name="degree_masters" value="2"> Masters in progress or received.
-        </li>
-        <li>
-            <!--
-               -add 5 points PhD in progress or received
-            -->
-            <input type="checkbox" class="quiz_input" name="degree_phd" value="5"> PhD in progress or received.
-        </li>
-        <li>
-            <!--
-                -subtract 3 points if asian parents think your degree is a waste of time
-            -->
-            <input type="checkbox" class="quiz_input" name="degree_waste_of_time" value="-3"> Asian parents think your degree is a waste of time.
-        </li>
+        <div 
+            class="checkbox_quiz"
+            data-name="degree_acceptable"
+            data-label="STEM, law, or medicine major."
+            data-value="2">
+        </div>
+        <div 
+            class="checkbox_quiz"
+            data-name="degree_graduated"
+            data-label="Graduated."
+            data-value="2">
+        </div>
+        <div 
+            class="checkbox_quiz"
+            data-name="degree_masters"
+            data-label="Masters in progress or received."
+            data-value="2">
+        </div>
+        <div 
+            class="checkbox_quiz"
+            data-name="degree_phd"
+            data-label="PhD in progress or received."
+            data-value="5">
+        </div>
+        <div 
+            class="checkbox_quiz"
+            data-name="degree_waste_of_time"
+            data-label="Asian parents think your degree is a waste of time."
+            data-value="-3">
+        </div>
         <li>
             <!--
                 -add 3 points if IQ above 130
@@ -183,37 +195,72 @@
             </li>
             </ul>
         </li>
-
+        <div 
+            class="checkbox_quiz"
+            data-name="salary_over_80k"
+            data-label="Salary is over 80k."
+            data-value="2">
+        </div>
         <li>
             <!--
                 -add 2 points if salary is over 80k
             -->
             <input type="checkbox" class="quiz_input" name="salary_over_80k" value="2"> Salary is over 80k.
         </li>
+        <div 
+            class="checkbox_quiz"
+            data-name="salary_over_100k"
+            data-label="Salary is over 100k."
+            data-value="3">
+        </div>
         <li>
             <!--
                 -add 3 points if 6 salary is over 100k
             -->
             <input type="checkbox" class="quiz_input" name="salary_over_100k" value="3"> Salary is over 100k.
         </li>
+        <div 
+            class="checkbox_quiz"
+            data-name=""
+            data-label=""
+            data-value="">
+        </div>
         <li>
             <!--
                 -add 2 points if 6 salary is over 200k
             -->
             <input type="checkbox" class="quiz_input" name="salary_over_200k" value="2"> Salary is over 200k.
         </li>
+        <div 
+            class="checkbox_quiz"
+            data-name=""
+            data-label=""
+            data-value="">
+        </div>
         <li>
             <!--
                 -subtract 5 points if you are jobless and not a student
             -->
             <input type="checkbox" class="quiz_input" name="unemployed_not_student" value="-5"> Jobless and not a student.
         </li>
+        <div 
+            class="checkbox_quiz"
+            data-name=""
+            data-label=""
+            data-value="">
+        </div>
         <li>
             <!--
                 -subtract 4 points if you aren't a student, aren't jobless, but your job is min wage / retail / hourly type that asian parents would "aiya" at
             -->
             <input type="checkbox" class="quiz_input" name="job_unacceptable_not_student" value="-4"> Aren't a student, aren't jobless, but your job is min wage / retail / hourly type that asian parents would "aiya" at.
         </li>
+        <div 
+            class="checkbox_quiz"
+            data-name=""
+            data-label=""
+            data-value="">
+        </div>
         <li>
             <!--
                 -add 4 points if you have, or graduated with, 3.9 GPA or above
