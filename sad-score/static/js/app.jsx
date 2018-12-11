@@ -94,10 +94,12 @@ class App extends React.Component {
         <li>
             <input type="checkbox" className="quiz_input" name="dropped_out" value="-9000"/> If you dropped out of school.
         </li>
-        <li>
-            
-            <input type="number" id="instruments" className="quiz_input" name="instruments" value="0"/> Number of instruments you are trained classNameically in.
-        </li>
+        <InputNumber
+          name="instruments"
+          label="Number of instruments you are trained classNameically in."
+          id="instruments"
+          value="0"
+        />
         <li>
             
             <input type="checkbox" className="quiz_input" name="instrument_good" value="3"/> If you were first chair of your symphony at some point. Solo instruments, if you've won any competitions post-middle school for the instrument.
@@ -106,18 +108,22 @@ class App extends React.Component {
             
             <input type="checkbox" className="quiz_input" name="sports_varsity_college" value="2"/> Varsity or college sports.
         </li>
-        <li>
-            
-            <input type="number" id="foreign_langauges_fluent" className="quiz_input" name="foreign_langauges_fluent" value="0"/> Number of languages you can speak fluently besides english.
-        </li>
+        <InputNumber
+          name="foreign_langauges_fluent"
+          label="Number of languages you can speak fluently besides english."
+          id="foreign_langauges_fluent"
+          value="0"
+        />
         <li>
             
            <input type="checkbox" className="quiz_input" name="english_non_fluent" value="-3"/> Not fluent in english.
         </li>
-        <li>
-            
-           <input type="number" id="foreign_langauges_nonfluent" className="quiz_input" name="foreign_langauges_nonfluent" value="0"/> Languages you know but are not fluent in.
-        </li>
+        <InputNumber
+          name="foreign_langauges_nonfluent"
+          label="Languages you know but are not fluent in."
+          id="foreign_langauges_nonfluent"
+          value="0"
+        />
         <li>
             
             <input type="checkbox" className="quiz_input" name="english_only" value="-5"/> English is the only language you know.
@@ -138,10 +144,12 @@ class App extends React.Component {
             
             <input type="checkbox" className="quiz_input" name="perfect_vision" value="3"/> Have naturally perfect vision.
         </li>
-        <li>
-            
-            <input type="number" id="tattoos" className="quiz_input" name="tattoos" value="0"/> Number of tattoos that you have.
-        </li>
+        <InputNumber
+          name="tattoos"
+          label="Number of tattoos that you have."
+          id="tattoos"
+          value="0"
+        />
         <li>
             
             <input type="checkbox" className="quiz_input" name="dress_like_fuccboi" value="2"/> Dress like a fuckboi.
@@ -199,7 +207,6 @@ class App extends React.Component {
         </li>
     </ol>
     <Footer/>
-    <ButtonScore/>
     </div>
     );
   }
